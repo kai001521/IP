@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soft Computing Practicals — Code Book</title>
+<style>
+:root { color-scheme: light; --ink:#000; --muted:#444; --line:#d7d7d7; --paper:#fff; --panel:#f7f7f7; }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { margin:0; background:var(--paper); color:var(--ink); font-family:Arial, Helvetica, sans-serif; }
+header { padding:38px max(22px, calc((100vw - 1120px)/2)) 28px; border-bottom:2px solid #000; }
+.eyebrow { margin:0 0 10px; font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; }
+h1 { margin:0; font-size:clamp(28px, 5vw, 48px); line-height:1.05; letter-spacing:-1.5px; }
+.subtitle { margin:12px 0 0; color:var(--muted); font-size:14px; }
+main { max-width:1120px; margin:0 auto; padding:26px 22px 70px; }
+.code-card { border:1px solid #bdbdbd; margin:0 0 22px; background:#fff; }
+.card-top { display:flex; justify-content:space-between; gap:18px; padding:20px 22px 12px; }
+.practical-label { color:#444; font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:8px; }
+h2 { margin:0; font-size:21px; line-height:1.25; font-weight:700; }
+.number { font-size:12px; color:#555; font-weight:700; }
+.aim-row { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:8px 22px 16px; }
+.aim { margin:0; font-size:14px; line-height:1.5; color:#000; }
+.copy-btn { flex:0 0 auto; border:1px solid #000; background:#000; color:#fff; padding:9px 14px; font-size:12px; font-weight:700; cursor:pointer; }
+.copy-btn:hover { background:#fff; color:#000; }
+.copy-btn:focus-visible { outline:2px solid #000; outline-offset:3px; }
+pre { margin:0; padding:18px 22px 22px; background:#f4f4f4; border-top:1px solid #ddd; overflow-x:auto; color:#000; font:13px/1.65 Consolas, "Courier New", monospace; tab-size:4; white-space:pre; }
+code { color:#000; }
+footer { border-top:1px solid #ddd; padding:20px 22px; text-align:center; color:#555; font-size:12px; }
+@media (max-width:600px) {
+ header { padding:28px 18px 22px; }main { padding:18px 12px 50px; }
+ .card-top { padding:16px 14px 10px; }
+ .aim-row { align-items:flex-start; flex-direction:column; padding:8px 14px 14px; }
+ .copy-btn { width:100%; }
+ pre { padding:15px 14px 18px; font-size:12px; }
+ h2 { font-size:18px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <p class="eyebrow">Practical Code Collection</p>
+  <h1>Soft Computing &amp; Image Processing</h1>
+  <p class="subtitle">All practical headings, aims and source codes in one page.</p>
+</header>
+<main>
+
+    <article class="code-card" data-search="practical no 1: image enhancement in spatial domain a. log transformation aim: to enhance an image using log transformation.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">PRACTICAL NO 1: Image Enhancement in Spatial Domain</div>
+          <h2>A. Log Transformation</h2>
+        </div>
+        <span class="number">01</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To enhance an image using log transformation.</p>
+        <button class="copy-btn" type="button" data-copy="0" aria-label="Copy code for A. Log Transformation">Copy Code</button>
+      </div>
+      <pre><code id="code-0">a = imread(fullpath(getIPCVpath() + &quot;/images/lena.png&quot;));
+a = double(rgb2gray(a));
+b = 255 * log(1 + a) / log(256);
+imshow(uint8(b));</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical no 1: image enhancement in spatial domain b. power law transformation aim: to enhance an image using power law transformation.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">PRACTICAL NO 1: Image Enhancement in Spatial Domain</div>
+          <h2>B. Power Law Transformation</h2>
+        </div>
+        <span class="number">02</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To enhance an image using power law transformation.</p>
+        <button class="copy-btn" type="button" data-copy="1" aria-label="Copy code for B. Power Law Transformation">Copy Code</button>
+      </div>
+      <pre><code id="code-1">clc;
+clear all;
+a = imread(fullpath(getIPCVpath()+&quot;\images\lena.png&quot;));
+b = double(a);
+subplot(1,2,2);
+imshow(a);
+title(&#x27;Original img&#x27;);
+k=1
+gamma=1;
+[m,n] = size(b);
+for i = 1:m
+for j = 1:n
+c(i,j)=k*(b(i,j)^gamma);
+end
+end
+subplot(1,2,1);
+imshow(uint8(c));
+title(&#x27;Power Law img&#x27;);</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical no 1: image enhancement in spatial domain c. negation aim: to obtain the negative of an input image.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">PRACTICAL NO 1: Image Enhancement in Spatial Domain</div>
+          <h2>C. Negation</h2>
+        </div>
+        <span class="number">03</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To obtain the negative of an input image.</p>
+        <button class="copy-btn" type="button" data-copy="2" aria-label="Copy code for C. Negation">Copy Code</button>
+      </div>
+      <pre><code id="code-2">clc;
+clear all;
+a = imread(fullpath(getIPCVpath() + &#x27;/images/lena.png&#x27;));
+subplot(1,2,1);
+imshow(a);
+title(&#x27;Original img&#x27;);
+[m,n] = size(a);
+for i = 1:m
+for j= 1:n
+c(i,j) = 255 - a(i,j);
+end
+end
+subplot(1,2,2);
+imshow(c);
+title(&#x27;Negation img&#x27;);</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical no 1: image enhancement in spatial domain d. contrast stretching aim: to generate dark, bright, low-contrast, and high-contrast images.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">PRACTICAL NO 1: Image Enhancement in Spatial Domain</div>
+          <h2>D. Contrast Stretching</h2>
+        </div>
+        <span class="number">04</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To generate dark, bright, low-contrast, and high-contrast images.</p>
+        <button class="copy-btn" type="button" data-copy="3" aria-label="Copy code for D. Contrast Stretching">Copy Code</button>
+      </div>
+      <pre><code id="code-3">clc;
+clear all;
+
+a = imread(fullpath(getIPCVpath() + &quot;/images/Lena_dark.png&quot;));
+a = double(a) / 255;
+
+subplot(2,3,1);
+imshow(uint8(a * 255));
+title(&quot;Original Image&quot;);
+
+dark = a * 0.4;
+subplot(2,3,2);
+imshow(uint8(dark * 255));
+title(&quot;Dark Image&quot;);
+
+bright = min(a *1.5,1);
+subplot(2,3,3);
+imshow(uint8(bright * 255));
+title(&quot;Bright Image&quot;);
+
+low = 0.5 * a + 0.25;
+subplot(2,3,4);
+imshow(uint8(low * 255));
+title(&quot;Low Contrast Image&quot;);
+
+high = imadjust(a, [0.3 0.7], [0 1]);
+subplot(2,3,5);
+imshow(uint8(high * 255));
+title(&quot;High Contrast Image&quot;);</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical no 1: image enhancement in spatial domain e. gray-level slicing with and without background aim: to highlight a selected range of gray levels in an image.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">PRACTICAL NO 1: Image Enhancement in Spatial Domain</div>
+          <h2>E. Gray-Level Slicing With and Without Background</h2>
+        </div>
+        <span class="number">05</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To highlight a selected range of gray levels in an image.</p>
+        <button class="copy-btn" type="button" data-copy="4" aria-label="Copy code for E. Gray-Level Slicing With and Without Background">Copy Code</button>
+      </div>
+      <pre><code id="code-4">clc;
+clear all;
+a = imread (fullpath(getIPCVpath() + &quot;/images/lena.png&quot;));
+a = rgb2gray(a);
+[m,n] = size(a);
+b = zeros(m,n);
+c = a;
+for i = 1:m
+    for j = 1:n
+        if a(i,j) &gt;= 100 &amp; a(i,j) &lt;= 200 then
+            b(i,j) = 255;
+            c(i,j) = 255;
+        end
+    end
+end
+subplot(1,3,1);
+imshow(a);
+xtitle(&quot;Original Image&quot;);
+subplot(1,3,2);
+imshow(uint8(b));
+xtitle(&quot;Without Background&quot;);
+subplot(1,3,3);
+imshow(c);
+xtitle(&quot;With Background&quot;);</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical no 1: image enhancement in spatial domain f. bit-plane slicing aim: to separate an image into its individual bit planes.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">PRACTICAL NO 1: Image Enhancement in Spatial Domain</div>
+          <h2>F. Bit-Plane Slicing</h2>
+        </div>
+        <span class="number">06</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To separate an image into its individual bit planes.</p>
+        <button class="copy-btn" type="button" data-copy="5" aria-label="Copy code for F. Bit-Plane Slicing">Copy Code</button>
+      </div>
+      <pre><code id="code-5">clc;
+clear all;
+close all;
+
+a = uint8(imread(fullpath(getIPCVpath() + &quot;/images/lena.png&quot;)));
+a = rgb2gray(a);
+
+// --- Original Image ---
+subplot(3,3,1);
+imshow(a); // Use Matplot instead of imshow
+title(&#x27;Original Image&#x27;);
+
+// --- Bit Planes (0 to 7) ---
+for k = 0:7
+    // Extract the k-th bit plane
+    b = uint8(bitget(a, k+1) * 255);
+
+    subplot(3,3,k+2);
+    imshow(b); // Use Matplot here as well
+    title(&#x27;Bit-Plane-&#x27; + string(k));
+end</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 2: image enhancement in frequency domain a. discrete fourier transform (dft) aim: to apply the discrete fourier transform on an image">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 2: Image Enhancement in Frequency Domain</div>
+          <h2>A. Discrete Fourier Transform (DFT)</h2>
+        </div>
+        <span class="number">07</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To apply the Discrete Fourier Transform on an image</p>
+        <button class="copy-btn" type="button" data-copy="6" aria-label="Copy code for A. Discrete Fourier Transform (DFT)">Copy Code</button>
+      </div>
+      <pre><code id="code-6">clear;
+
+I = imread(fullpath(getIPCVpath() + &quot;/images/measure_gray.jpg&quot;));
+J = fft2(double(I));
+L = fftshift(real(J));
+
+subplot(1,3,1); imshow(I); title(&#x27;Original Image&#x27;);
+subplot(1,3,2); imshow(J); title(&#x27;Fourier transform&#x27;);
+subplot(1,3,3); imshow(L); title(&#x27;Shifted Fourier transform&#x27;);</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 2: image enhancement in frequency domain b. gaussian low pass filter aim: to smooth an image using a gaussian low-pass filter.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 2: Image Enhancement in Frequency Domain</div>
+          <h2>B. Gaussian Low Pass Filter</h2>
+        </div>
+        <span class="number">08</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To smooth an image using a Gaussian low-pass filter.</p>
+        <button class="copy-btn" type="button" data-copy="7" aria-label="Copy code for B. Gaussian Low Pass Filter">Copy Code</button>
+      </div>
+      <pre><code id="code-7">clc;
+clear;
+
+S = imread(fullpath(getIPCVpath()+&quot;/images/lena.png&quot;));
+if size(S,3)==3 then
+    S = rgb2gray(S);
+end
+
+S = double(S)/255;
+[M,N] = size(S);
+
+F = fftshift(fft2(S));
+[X,Y] = meshgrid(1:N,1:M);
+
+D = sqrt((X-N/2).^2+(Y-M/2).^2);
+H = exp(-(D.^2)/(2*30^2));
+
+R = real(fft(ifftshift(F.*H),1));
+
+subplot(1,2,1);
+imshow(S);
+title(&#x27;Original&#x27;);
+
+subplot(1,2,2);
+imshow(R);
+title(&#x27;Gaussian Smoothed&#x27;);</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 2: image enhancement in frequency domain c. butterworth low pass filter aim: to apply a butterworth low-pass filter to an image.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 2: Image Enhancement in Frequency Domain</div>
+          <h2>C. Butterworth Low Pass Filter</h2>
+        </div>
+        <span class="number">09</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To apply a Butterworth low-pass filter to an image.</p>
+        <button class="copy-btn" type="button" data-copy="8" aria-label="Copy code for C. Butterworth Low Pass Filter">Copy Code</button>
+      </div>
+      <pre><code id="code-8">clear all;
+S = imread (fullpath(getIPCVpath()+&quot;/images/measure_gray.jpg&quot;));
+h = mkfftfilter(S,&#x27;gauss&#x27;,0.4);
+S2 = fft2(im2double(S));
+S3 = S2.*fftshift(h);
+S4 = real(ifft(S3));
+subplot(2,2,1);
+imshow(S);
+title(&#x27;Original Image&#x27;);
+subplot(2,2,2);
+imshow(abs(S2));
+title(&#x27;Fourier Transform&#x27;);
+subplot(2,2,3);
+imshow(abs(S3));
+title(&#x27;Shifted Fourier Transform&#x27;);
+subplot(2,2,4);
+imshow(S4);
+title(&#x27;Filtered Image&#x27;);</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 2: image enhancement in frequency domain d. ideal high pass filter aim: to apply an ideal high-pass filter to an image">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 2: Image Enhancement in Frequency Domain</div>
+          <h2>D. Ideal High Pass Filter</h2>
+        </div>
+        <span class="number">10</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To apply an ideal high-pass filter to an image</p>
+        <button class="copy-btn" type="button" data-copy="9" aria-label="Copy code for D. Ideal High Pass Filter">Copy Code</button>
+      </div>
+      <pre><code id="code-9">clc;
+clear all;
+S = imread(fullpath(getIPCVpath() + &quot;/images/measure_gray.jpg&quot;));
+S2 = fft2(im2double(S));
+h = ffilt(&#x27;hp&#x27;,3,0.2,0.3);
+img = imfilter(S2,h);
+S4 = real(ifft(img));
+subplot(1,3,1);
+imshow(S);
+title(&#x27;Original Image&#x27;);
+subplot(1,3,2);
+imshow(abs(S2));
+title(&#x27;Fourier Image&#x27;);
+subplot(1,3,3);
+imshow(S4);
+title(&#x27;Filtered Image&#x27;);</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 2: image enhancement in frequency domain e. ideal low pass filter aim: to apply an ideal low-pass filter to an image">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 2: Image Enhancement in Frequency Domain</div>
+          <h2>E. Ideal Low Pass Filter</h2>
+        </div>
+        <span class="number">11</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To apply an ideal low-pass filter to an image</p>
+        <button class="copy-btn" type="button" data-copy="10" aria-label="Copy code for E. Ideal Low Pass Filter">Copy Code</button>
+      </div>
+      <pre><code id="code-10">clc;
+clear;
+S = imread(fullpath(getIPCVpath()+&quot;/images/measure_gray.jpg&quot;));
+S = double(S)/255;
+[M,N] = size(S);
+F = fftshift(fft2(S));
+[X,Y] = meshgrid(1:N,1:M);
+D = sqrt((X-N/2).^2+(Y-M/2).^2);
+D0 = 30;
+H = double(D &lt;= D0);
+G = F.*H;
+R = real(fft(ifftshift(G),1));
+subplot(1,3,1);
+imshow(S);
+title(&#x27;Original Image&#x27;);
+subplot(1,3,2);
+imshow(log(1+abs(F)));
+title(&#x27;Fourier Transform&#x27;);
+subplot(1,3,3);
+imshow(R);
+title(&#x27;Ideal Low Pass Filtered Image&#x27;);</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 3: image enhancement in spatial domain a. image averaging using averaging filter aim: to remove noise from an image using an averaging filter.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 3: Image Enhancement in Spatial Domain</div>
+          <h2>A. Image Averaging Using Averaging Filter</h2>
+        </div>
+        <span class="number">12</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To remove noise from an image using an averaging filter.</p>
+        <button class="copy-btn" type="button" data-copy="11" aria-label="Copy code for A. Image Averaging Using Averaging Filter">Copy Code</button>
+      </div>
+      <pre><code id="code-11">clc;
+clear all;
+image = imread(fullpath(getIPCVpath()+&quot;/images/lena.png&quot;));
+NoisyImage = imnoise(image,&#x27;salt &amp; pepper&#x27;,0.02);
+F1 = fspecial(&#x27;average&#x27;,3);
+FilterImage = imfilter(NoisyImage,F1);
+subplot(1,3,1);
+imshow(image);
+title(&#x27;Original Image&#x27;);
+subplot(1,3,2);
+imshow(NoisyImage);
+title(&#x27;Noisy Image&#x27;);
+subplot(1,3,3);
+imshow(FilterImage);
+title(&#x27;Filtered Image&#x27;);</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 3: image enhancement in spatial domain b. smoothing aim: to apply a smoothing effect to an input image using an appropriate filter.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 3: Image Enhancement in Spatial Domain</div>
+          <h2>B. Smoothing</h2>
+        </div>
+        <span class="number">13</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To apply a smoothing effect to an input image using an appropriate filter.</p>
+        <button class="copy-btn" type="button" data-copy="12" aria-label="Copy code for B. Smoothing">Copy Code</button>
+      </div>
+      <pre><code id="code-12">clc;
+clear all;
+a = imread(fullpath(getIPCVpath()+&quot;/images/measure_gray.jpg&quot;));
+a = rgb2gray(a);
+NoisyImage = imnoise(a,&#x27;gaussian&#x27;,0.02);
+wienerfilter = imwiener2(NoisyImage,[5,5],0.02);
+subplot(1,3,1);
+imshow(a);
+title(&#x27;Original Image&#x27;);
+subplot(1,3,2);
+imshow(NoisyImage);
+title(&#x27;Noisy Image&#x27;);
+subplot(1,3,3);
+imshow(wienerfilter);
+title(&#x27;Wiener Filter&#x27;);</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 3: image enhancement in spatial domain c. varying the number of intensity levels aim: to study the effects of varying the number of intensity levels in a digital image.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 3: Image Enhancement in Spatial Domain</div>
+          <h2>C. Varying the Number of Intensity Levels</h2>
+        </div>
+        <span class="number">14</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To study the effects of varying the number of intensity levels in a digital image.</p>
+        <button class="copy-btn" type="button" data-copy="13" aria-label="Copy code for C. Varying the Number of Intensity Levels">Copy Code</button>
+      </div>
+      <pre><code id="code-13">clc;
+clear;
+a = imread(fullpath(getIPCVpath()+&quot;/images/lena.png&quot;));
+a = double(rgb2gray(a));
+subplot(2,2,1);
+imshow(uint8(a));
+xtitle(&quot;Original Image&quot;);
+subplot(2,2,2);
+imshow(uint8(floor(a/128)*128));
+xtitle(&quot;2 Intensity Levels&quot;);
+subplot(2,2,3);
+imshow(uint8(floor(a/64)*64));
+xtitle(&quot;4 Intensity Levels&quot;);
+subplot(2,2,4);
+imshow(uint8(floor(a/32)*32));
+xtitle(&quot;8 Intensity Levels&quot;);</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 3: image enhancement in spatial domain d. image averaging (image addition) for noise reduction aim: to perform image averaging using image addition for noise reduction.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 3: Image Enhancement in Spatial Domain</div>
+          <h2>D. Image Averaging (Image Addition) for Noise Reduction</h2>
+        </div>
+        <span class="number">15</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To perform image averaging using image addition for noise reduction.</p>
+        <button class="copy-btn" type="button" data-copy="14" aria-label="Copy code for D. Image Averaging (Image Addition) for Noise Reduction">Copy Code</button>
+      </div>
+      <pre><code id="code-14">clc;
+clear;
+p = fullpath(getIPCVpath()+&quot;/images/lena.png&quot;);
+a = imread(p);
+b = imread(p);
+avg = uint8((double(a)+double(b))/2);
+subplot(1,3,1);
+imshow(a);
+xtitle(&quot;Image 1&quot;);
+subplot(1,3,2);
+imshow(b);
+xtitle(&quot;Image 2&quot;);
+subplot(1,3,3);
+imshow(avg);
+xtitle(&quot;Averaged Image&quot;);</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 3: image enhancement in spatial domain e. image subtraction aim: to compare images using subtraction and enhance the difference between them.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 3: Image Enhancement in Spatial Domain</div>
+          <h2>E. Image Subtraction</h2>
+        </div>
+        <span class="number">16</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To compare images using subtraction and enhance the difference between them.</p>
+        <button class="copy-btn" type="button" data-copy="15" aria-label="Copy code for E. Image Subtraction">Copy Code</button>
+      </div>
+      <pre><code id="code-15">clc;
+clear;
+
+p = fullpath(getIPCVpath()+&quot;/images/lena.png&quot;);
+
+a = imread(p);
+b = imread(p);
+
+c = uint8(abs(double(a)-double(b)));
+
+subplot(1,3,1);
+imshow(a);
+xtitle(&quot;Image 1&quot;);
+
+subplot(1,3,2);
+imshow(b);
+xtitle(&quot;Image 2&quot;);
+
+subplot(1,3,3);
+imshow(c);
+xtitle(&quot;Subtracted Image&quot;);</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 4: image enhancement statistical filters a. mean filter (object bw) aim: to apply a mean filter to an input image.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 4: Image Enhancement Statistical Filters</div>
+          <h2>A. Mean Filter (Object bw)</h2>
+        </div>
+        <span class="number">17</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To apply a mean filter to an input image.</p>
+        <button class="copy-btn" type="button" data-copy="16" aria-label="Copy code for A. Mean Filter (Object bw)">Copy Code</button>
+      </div>
+      <pre><code id="code-16">clc;
+clear;
+close;
+img = imread(&quot;D:\gray.jpeg&quot;);
+img = double(img);
+[m, n] = size(img);
+filtered = zeros(m, n);
+for i = 2:m-1
+  for j = 2:n-1
+      window = img(i-1:i+1, j-1:j+1);
+      filtered(i,j) = sum(window) / 9;
+  end
+end
+filtered = uint8(filtered);
+figure();
+subplot(1,2,1);
+imshow(uint8(img));
+title(&quot;Original Image&quot;);
+subplot(1,2,2);
+imshow(filtered);
+title(&quot;Mean Filtered Image&quot;);</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 4: image enhancement statistical filters b. median filter (object) aim: to apply a median filter to an input image.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 4: Image Enhancement Statistical Filters</div>
+          <h2>B. Median Filter (object)</h2>
+        </div>
+        <span class="number">18</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To apply a median filter to an input image.</p>
+        <button class="copy-btn" type="button" data-copy="17" aria-label="Copy code for B. Median Filter (object)">Copy Code</button>
+      </div>
+      <pre><code id="code-17">clc;
+clear;
+close;
+img = imread(&quot;D:\gray.jpeg&quot;);
+img = double(img);
+[m, n] = size(img);
+filtered = img;
+for i = 2:m-1
+  for j = 2:n-1
+     window = img(i-1:i+1, j-1:j+1);
+     pixels = matrix(window, 1, 9);
+     filtered(i,j) = median(pixels);
+  end
+end
+filtered = uint8(filtered);
+figure();
+subplot(1,2,1);
+imshow(uint8(img));
+title(&quot;Original Image&quot;);
+subplot(1,2,2);
+imshow(filtered);
+title(&quot;Median Filtered Image&quot;);</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 4: image enhancement statistical filters c. max-min and min-max filters (object) aim: to apply max-min and min-max filters to an input image.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 4: Image Enhancement Statistical Filters</div>
+          <h2>C. Max-Min and Min-Max Filters (object)</h2>
+        </div>
+        <span class="number">19</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To apply max-min and min-max filters to an input image.</p>
+        <button class="copy-btn" type="button" data-copy="18" aria-label="Copy code for C. Max-Min and Min-Max Filters (object)">Copy Code</button>
+      </div>
+      <pre><code id="code-18">clc;
+clear;
+close;
+img = imread(&quot;D:\gray.jpeg&quot;);
+img = double(img);
+[m, n] = size(img);
+max_filtered = img;
+min_filtered = img;
+maxmin_filtered = img;
+for i = 2:m-1
+  for j = 2:n-1
+      window = img(i-1:i+1, j-1:j+1);
+      max_filtered(i,j) = max(window);
+      min_filtered(i,j) = min(window);
+      maxmin_filtered(i,j) = (max(window) + min(window)) / 2;
+  end
+end
+max_filtered = uint8(max_filtered);
+min_filtered = uint8(min_filtered);
+maxmin_filtered = uint8(maxmin_filtered);
+figure();
+subplot(2,2,1);
+imshow(uint8(img));
+title(&quot;Original Image&quot;);
+subplot(2,2,2);
+imshow(max_filtered);
+title(&quot;Max Filter&quot;);
+subplot(2,2,3);
+imshow(min_filtered);
+title(&quot;Min Filter&quot;);
+subplot(2,2,4);
+imshow(maxmin_filtered);
+title(&quot;Max-Min Filter&quot;);</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 5: morphological operations a. erosion (paint a simple design) aim: to perform erosion on an input image.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 5: Morphological Operations</div>
+          <h2>A. Erosion (paint a simple design)</h2>
+        </div>
+        <span class="number">20</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To perform erosion on an input image.</p>
+        <button class="copy-btn" type="button" data-copy="19" aria-label="Copy code for A. Erosion (paint a simple design)">Copy Code</button>
+      </div>
+      <pre><code id="code-19">clc;
+clear all;
+a = imread(&#x27;E:\IMGPROCESSING\erosion.png&#x27;);
+structEle = imcreatese(&#x27;ellipse&#x27;,5,5);
+erosion = imerode(a,structEle);
+subplot(1,2,1);
+imshow(a);
+title(&#x27;Original Image&#x27;);
+subplot(1,2,2);
+imshow(erosion);
+title(&#x27;Eroded Image 1&#x27;);</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 5: morphological operations b. dilation (paint a simple design) aim: to perform dilation on an input image.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 5: Morphological Operations</div>
+          <h2>B. Dilation (paint a simple design)</h2>
+        </div>
+        <span class="number">21</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To perform dilation on an input image.</p>
+        <button class="copy-btn" type="button" data-copy="20" aria-label="Copy code for B. Dilation (paint a simple design)">Copy Code</button>
+      </div>
+      <pre><code id="code-20">clc;
+clear all;
+a = imread(&#x27;E:\IMGPROCESSING\erosion.png&#x27;);
+structEle = imcreatese(&#x27;ellipse&#x27;,15,15);
+dilation = imdilate(a,structEle);
+subplot(1,2,1);
+imshow(a);
+title(&#x27;Original Image&#x27;);
+subplot(1,2,2);
+imshow(dilation);
+title(&#x27;Dilated Image 1&#x27;);</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 5: morphological operations c. opening (make a 3 d box in paint) aim: to perform opening on an input image.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 5: Morphological Operations</div>
+          <h2>C. Opening (make a 3 D box in paint)</h2>
+        </div>
+        <span class="number">22</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To perform opening on an input image.</p>
+        <button class="copy-btn" type="button" data-copy="21" aria-label="Copy code for C. Opening (make a 3 D box in paint)">Copy Code</button>
+      </div>
+      <pre><code id="code-21">clc;
+clear all;
+I = imread(&quot;C:\ip\images.png&quot;);
+sturctEle = imcreatese(&#x27;ellipse&#x27;,20,20);
+erosion = imerode(I,sturctEle);
+opening = imdilate(erosion,sturctEle);
+subplot(1,2,1);
+imshow(I);
+title(&#x27;Original Image&#x27;);
+subplot(1,2,2);
+imshow(opening);
+title(&#x27;Opening Image&#x27;);</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 5: morphological operations d. closing (animal image) aim: to perform closing on an input image.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 5: Morphological Operations</div>
+          <h2>D. Closing (Animal Image)</h2>
+        </div>
+        <span class="number">23</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To perform closing on an input image.</p>
+        <button class="copy-btn" type="button" data-copy="22" aria-label="Copy code for D. Closing (Animal Image)">Copy Code</button>
+      </div>
+      <pre><code id="code-22">clc;
+clear all;
+I = imread(&quot;C:\ip\image.JPG&quot;);
+sturctEle = imcreatese(&#x27;ellipse&#x27;,20,20);
+dilation = imdilate(I,sturctEle);
+closing = imerode(dilation,sturctEle);
+subplot(1,2,1);
+imshow(I);
+title(&#x27;Original Image&#x27;);
+subplot(1,2,2);
+imshow(closing);
+title(&#x27;Closing Image&#x27;);</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 5: morphological operations e. boundary extraction (make a 3 d box in paint) aim: to extract the boundary of an object in an image.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 5: Morphological Operations</div>
+          <h2>E. Boundary Extraction (make a 3 D box in paint)</h2>
+        </div>
+        <span class="number">24</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To extract the boundary of an object in an image.</p>
+        <button class="copy-btn" type="button" data-copy="23" aria-label="Copy code for E. Boundary Extraction (make a 3 D box in paint)">Copy Code</button>
+      </div>
+      <pre><code id="code-23">clc;
+clear all;
+I = imread(&quot;C:\ip\images.png&quot;);
+sturctEle = imcreatese(&#x27;ellipse&#x27;,30,30);
+erosion = imerode(I,sturctEle);
+boundry = I - erosion;
+subplot(2,2,1);
+imshow(I);
+title(&#x27;Original Image&#x27;);
+subplot(2,2,2);
+imshow(erosion);
+title(&#x27;Eroded Image&#x27;);
+subplot(2,2,3);
+imshow(boundry);
+title(&#x27;Boundary Image&#x27;);</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 5: morphological operations f. morphological gradient (make a 3 d box in paint) aim: to perform the morphological gradient operation on an image.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 5: Morphological Operations</div>
+          <h2>F. Morphological Gradient (make a 3 D box in paint)</h2>
+        </div>
+        <span class="number">25</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To perform the morphological gradient operation on an image.</p>
+        <button class="copy-btn" type="button" data-copy="24" aria-label="Copy code for F. Morphological Gradient (make a 3 D box in paint)">Copy Code</button>
+      </div>
+      <pre><code id="code-24">clc;
+clear all;
+I = imread(&quot;C:\ip\images.png&quot;);
+sturctEle = imcreatese(&#x27;ellipse&#x27;,30,30);
+dilation = imdilate(I,sturctEle);
+erosion = imerode(I,sturctEle);
+gradient = dilation - erosion;
+subplot(2,2,1);
+imshow(I);
+title(&#x27;Original Image&#x27;);
+subplot(2,2,2);
+imshow(dilation);
+title(&#x27;Dilated Image&#x27;);
+subplot(2,2,3);
+imshow(erosion);
+title(&#x27;Eroded Image&#x27;);
+subplot(2,2,4);
+imshow(gradient);
+title(&#x27;Morphological Gradient&#x27;);</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 5: morphological operations g. top-hat transformation (make a 3 d box in paint) aim: to perform top-hat transformation on an input image.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 5: Morphological Operations</div>
+          <h2>G. Top-Hat Transformation (make a 3 D box in paint)</h2>
+        </div>
+        <span class="number">26</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To perform top-hat transformation on an input image.</p>
+        <button class="copy-btn" type="button" data-copy="25" aria-label="Copy code for G. Top-Hat Transformation (make a 3 D box in paint)">Copy Code</button>
+      </div>
+      <pre><code id="code-25">clc;
+clear all;
+I = imread(&quot;C:\ip\images.png&quot;);
+sturctEle = imcreatese(&#x27;ellipse&#x27;,30,30);
+erosion = imerode(I,sturctEle);
+opening = imdilate(erosion,sturctEle);
+tophat = I - opening;
+subplot(2,2,1);
+imshow(I);
+title(&#x27;Original Image&#x27;);
+subplot(2,2,2);
+imshow(opening);
+title(&#x27;Opening Image&#x27;);
+subplot(2,2,3);
+imshow(tophat);
+title(&#x27;Top-hat Image&#x27;);</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 7: opencv python practicals a. read and display image (animal image) ">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 7: OpenCV Python Practicals</div>
+          <h2>A. Read and Display Image (animal image)</h2>
+        </div>
+        <span class="number">27</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: Not specified in the source document.</p>
+        <button class="copy-btn" type="button" data-copy="26" aria-label="Copy code for A. Read and Display Image (animal image)">Copy Code</button>
+      </div>
+      <pre><code id="code-26">import cv2
+import numpy as np
+img = cv2.imread(r&quot;D:\2. AAYUSH FILES\PRACTICALS\IP\IP PYTHON\I2.jpg&quot;, 1)
+cv2.imshow(&quot;image&quot;, img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 7: opencv python practicals b. accessing and modifying pixel (animal image) aim: to access and display a pixel value from an image.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 7: OpenCV Python Practicals</div>
+          <h2>B. Accessing and Modifying Pixel (animal image)</h2>
+        </div>
+        <span class="number">28</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To access and display a pixel value from an image.</p>
+        <button class="copy-btn" type="button" data-copy="27" aria-label="Copy code for B. Accessing and Modifying Pixel (animal image)">Copy Code</button>
+      </div>
+      <pre><code id="code-27">import cv2
+import numpy as np
+img = cv2.imread(r&quot;D:\2. AAYUSH FILES\PRACTICALS\IP\IP PYTHON\I2.jpg&quot;, 1)
+cv2.imshow(&#x27;image:&#x27;, img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+pixel = img[100,100]
+print(pixel)</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 7: opencv python practicals c. image properties aim: to display the properties of an image using opencv.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 7: OpenCV Python Practicals</div>
+          <h2>C. Image Properties</h2>
+        </div>
+        <span class="number">29</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To display the properties of an image using OpenCV.</p>
+        <button class="copy-btn" type="button" data-copy="28" aria-label="Copy code for C. Image Properties">Copy Code</button>
+      </div>
+      <pre><code id="code-28">import cv2
+img = cv2.imread(r&quot;D:\2. AAYUSH FILES\PRACTICALS\IP\IP PYTHON\I2.jpg&quot;, 1)
+dimensions = img.shape
+height = img.shape[0]
+width = img.shape[1]
+channels = img.shape[2]
+size1 = img.size
+print(&#x27;Image Dimension:&#x27;, dimensions)
+print(&#x27;Image Height:&#x27;, height)
+print(&#x27;Image Width:&#x27;, width)
+print(&#x27;Number of Channels:&#x27;, channels)
+print(&#x27;Image Size:&#x27;, size1)</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 7: opencv python practicals d. change image color to grayscale (color image) aim: to convert a color image into a grayscale image using opencv.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 7: OpenCV Python Practicals</div>
+          <h2>D. Change Image Color to Grayscale (Color Image)</h2>
+        </div>
+        <span class="number">30</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To convert a color image into a grayscale image using OpenCV.</p>
+        <button class="copy-btn" type="button" data-copy="29" aria-label="Copy code for D. Change Image Color to Grayscale (Color Image)">Copy Code</button>
+      </div>
+      <pre><code id="code-29">import cv2
+import numpy as np
+img = cv2.imread(r&quot;D:\2. AAYUSH FILES\PRACTICALS\IP\IP PYTHON\I2.jpg&quot;, 1)
+cv2.imshow(&#x27;Image&#x27;, img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+window_name = &#x27;Image&#x27;
+image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+cv2.imshow(window_name, image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 7: opencv python practicals e. rotation by 90 degrees (bw image) aim: to rotate an image by 90 degrees using opencv.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 7: OpenCV Python Practicals</div>
+          <h2>E. Rotation by 90 Degrees (bw image)</h2>
+        </div>
+        <span class="number">31</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To rotate an image by 90 degrees using OpenCV.</p>
+        <button class="copy-btn" type="button" data-copy="30" aria-label="Copy code for E. Rotation by 90 Degrees (bw image)">Copy Code</button>
+      </div>
+      <pre><code id="code-30">import cv2
+import numpy as np
+img = cv2.imread(r&quot;D:\2. AAYUSH FILES\PRACTICALS\IP\IP PYTHON\I2.jpg&quot;, 1)
+cv2.imshow(&#x27;image&#x27;, img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+(h,w) = img.shape[:2]
+center = (w/2,h/2)
+angle90 = 90
+scale = 1.0
+M = cv2.getRotationMatrix2D(center,angle90,scale)
+rotated90 = cv2.warpAffine(img,M,(h,w))
+cv2.imshow(&#x27;Image rotated by 90 degrees&#x27;,rotated90)
+cv2.waitKey(0)
+cv2.destroyAllWindows()</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 7: opencv python practicals f. draw a circle (any image) aim: to draw a circle on an image using opencv.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 7: OpenCV Python Practicals</div>
+          <h2>F. Draw a Circle (any image)</h2>
+        </div>
+        <span class="number">32</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To draw a circle on an image using OpenCV.</p>
+        <button class="copy-btn" type="button" data-copy="31" aria-label="Copy code for F. Draw a Circle (any image)">Copy Code</button>
+      </div>
+      <pre><code id="code-31">import cv2
+import numpy as np
+img = cv2.imread(r&quot;D:\2. AAYUSH FILES\PRACTICALS\IP\IP PYTHON\I2.jpg&quot;, 1)
+cv2.circle(img,(80,80),55,(0,255,0),-1)
+cv2.imshow(&#x27;image&#x27;,img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 7: opencv python practicals g. draw a square / rectangle (any image) aim: to draw a rectangle on an image using opencv.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 7: OpenCV Python Practicals</div>
+          <h2>G. Draw a Square / Rectangle (Any image)</h2>
+        </div>
+        <span class="number">33</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To draw a rectangle on an image using OpenCV.</p>
+        <button class="copy-btn" type="button" data-copy="32" aria-label="Copy code for G. Draw a Square / Rectangle (Any image)">Copy Code</button>
+      </div>
+      <pre><code id="code-32">import cv2
+import numpy as np
+img = cv2.imread(r&quot;D:\2. AAYUSH FILES\PRACTICALS\IP\IP PYTHON\I2.jpg&quot;, 1)
+cv2.rectangle(img,(15,25),(200,150),(0,255,255),15)
+cv2.imshow(&#x27;image&#x27;,img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 7: opencv python practicals h. draw an ellipse (any image) aim: to draw an ellipse on an image using opencv.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 7: OpenCV Python Practicals</div>
+          <h2>H. Draw an Ellipse (any image)</h2>
+        </div>
+        <span class="number">34</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To draw an ellipse on an image using OpenCV.</p>
+        <button class="copy-btn" type="button" data-copy="33" aria-label="Copy code for H. Draw an Ellipse (any image)">Copy Code</button>
+      </div>
+      <pre><code id="code-33">import cv2
+import numpy as np
+img = cv2.imread(r&quot;D:\2. AAYUSH FILES\PRACTICALS\IP\IP PYTHON\I2.jpg&quot;, 1)
+cv2.ellipse(img,(250,150),(80,20),5,0,360,(0,0,255),15)
+cv2.imshow(&#x27;image&#x27;,img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 7: opencv python practicals i. draw a line (any image) aim: to draw a line on an image using opencv.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 7: OpenCV Python Practicals</div>
+          <h2>I. Draw a Line (any image)</h2>
+        </div>
+        <span class="number">35</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To draw a line on an image using OpenCV.</p>
+        <button class="copy-btn" type="button" data-copy="34" aria-label="Copy code for I. Draw a Line (any image)">Copy Code</button>
+      </div>
+      <pre><code id="code-34">import cv2
+import numpy as np
+img = cv2.imread(r&quot;D:\2. AAYUSH FILES\PRACTICALS\IP\IP PYTHON\I2.jpg&quot;, 1)
+cv2.line(img,(10,0),(150,150),(0,0,255),15)
+cv2.imshow(&#x27;image&#x27;,img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 7: opencv python practicals j. add text (any image) aim: to add text to an image using opencv.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 7: OpenCV Python Practicals</div>
+          <h2>J. Add Text (any image)</h2>
+        </div>
+        <span class="number">36</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To add text to an image using OpenCV.</p>
+        <button class="copy-btn" type="button" data-copy="35" aria-label="Copy code for J. Add Text (any image)">Copy Code</button>
+      </div>
+      <pre><code id="code-35">import cv2
+import numpy as np
+img = cv2.imread(r&quot;D:\2. AAYUSH FILES\PRACTICALS\IP\IP PYTHON\I2.jpg&quot;, 1)
+font = cv2.FONT_HERSHEY_SIMPLEX
+cv2.putText(img,&#x27;HELLO&#x27;,(150,150),font,1,(0,0,255))
+cv2.imshow(&#x27;image&#x27;,img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 7: opencv python practicals k. edge detection (any image) aim: to detect edges in an image using the canny edge detector.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 7: OpenCV Python Practicals</div>
+          <h2>K. Edge Detection (any image)</h2>
+        </div>
+        <span class="number">37</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To detect edges in an image using the Canny edge detector.</p>
+        <button class="copy-btn" type="button" data-copy="36" aria-label="Copy code for K. Edge Detection (any image)">Copy Code</button>
+      </div>
+      <pre><code id="code-36">import cv2
+import numpy as np
+img = cv2.imread(r&quot;D:\2. AAYUSH FILES\PRACTICALS\IP\IP PYTHON\I2.jpg&quot;, 1)
+cv2.imshow(&#x27;image&#x27;,img)
+edges = cv2.Canny(img,100,200)
+cv2.imshow(&quot;Edge Detected Image&quot;,edges)
+cv2.waitKey(0)
+cv2.destroyAllWindows()</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 7: opencv python practicals l. opencv blur (image smoothing) (any image) aim: to smooth an image using the opencv blur function">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 7: OpenCV Python Practicals</div>
+          <h2>L. OpenCV Blur (Image Smoothing) (any image)</h2>
+        </div>
+        <span class="number">38</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To smooth an image using the OpenCV blur function</p>
+        <button class="copy-btn" type="button" data-copy="37" aria-label="Copy code for L. OpenCV Blur (Image Smoothing) (any image)">Copy Code</button>
+      </div>
+      <pre><code id="code-37">import cv2
+import numpy as np
+img = cv2.imread(r&quot;D:\2. AAYUSH FILES\PRACTICALS\IP\IP PYTHON\I2.jpg&quot;, 1)
+cv2.imshow(&#x27;image&#x27;,cv2.blur(img,(5,5)))
+cv2.waitKey(0)
+cv2.destroyAllWindows()</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 7: opencv python practicals m. image thresholding (any image) aim: to convert an image into a binary image using thresholding.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 7: OpenCV Python Practicals</div>
+          <h2>M. Image Thresholding (any image)</h2>
+        </div>
+        <span class="number">39</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To convert an image into a binary image using thresholding.</p>
+        <button class="copy-btn" type="button" data-copy="38" aria-label="Copy code for M. Image Thresholding (any image)">Copy Code</button>
+      </div>
+      <pre><code id="code-38">import cv2
+import numpy as np
+img = cv2.imread(r&quot;D:\2. AAYUSH FILES\PRACTICALS\IP\IP PYTHON\I2.jpg&quot;, 1)
+retval,threshold = cv2.threshold(img,62,255,cv2.THRESH_BINARY)
+cv2.imshow(&#x27;Image&#x27;,threshold)
+cv2.waitKey(0)
+cv2.destroyAllWindows()</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 8: video processing a. gaussian blur (color video) aim: to apply gaussian blur to video frames using opencv.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 8: Video Processing</div>
+          <h2>A. Gaussian Blur (color video)</h2>
+        </div>
+        <span class="number">40</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To apply Gaussian blur to video frames using OpenCV.</p>
+        <button class="copy-btn" type="button" data-copy="39" aria-label="Copy code for A. Gaussian Blur (color video)">Copy Code</button>
+      </div>
+      <pre><code id="code-39">import cv2
+import numpy as np
+cap = cv2.VideoCapture(r&#x27;D:\2. AAYUSH FILES\PRACTICALS\IP\IP PYTHON\v1.mp4&#x27;)
+while(cap.isOpened()):
+    ret, frame = cap.read()
+    frame = cv2.resize(frame, (540, 380), fx=0, fy=0,
+                       interpolation=cv2.INTER_CUBIC)
+    cv2.imshow(&#x27;Frame&#x27;, frame)
+    gaussianblur = cv2.GaussianBlur(frame, (5, 5), 0)
+    cv2.imshow(&#x27;gblur&#x27;, gaussianblur)
+    if cv2.waitKey(25) &amp; 0xFF == ord(&#x27;q&#x27;):
+        break
+cap.release()
+cv2.destroyAllWindows()</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 8: video processing b. video frame capture (video) aim: to capture and display video frames using opencv.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 8: Video Processing</div>
+          <h2>B. Video Frame Capture (video)</h2>
+        </div>
+        <span class="number">41</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To capture and display video frames using OpenCV.</p>
+        <button class="copy-btn" type="button" data-copy="40" aria-label="Copy code for B. Video Frame Capture (video)">Copy Code</button>
+      </div>
+      <pre><code id="code-40">import cv2
+vid = cv2.VideoCapture(0)
+while(True):
+    ret, frame = vid.read()
+    cv2.imshow(&#x27;frame&#x27;, frame)
+    if cv2.waitKey(1) &amp; 0xFF == ord(&#x27;q&#x27;):
+        break
+vid.release()
+cv2.destroyAllWindows()</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 8: video processing c. video thresholding (any video) aim: to apply adaptive thresholding to video frames.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 8: Video Processing</div>
+          <h2>C. Video Thresholding (any video)</h2>
+        </div>
+        <span class="number">42</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To apply adaptive thresholding to video frames.</p>
+        <button class="copy-btn" type="button" data-copy="41" aria-label="Copy code for C. Video Thresholding (any video)">Copy Code</button>
+      </div>
+      <pre><code id="code-41">import cv2
+import numpy as np
+cap = cv2.VideoCapture(&#x27;C:\\IPMSIT\\v1.mp4&#x27;)
+while cap.isOpened():
+    ret, frame = cap.read()
+    if not ret:
+        break
+    frame = cv2.resize(frame, (540, 380), fx=0, fy=0,
+                       interpolation=cv2.INTER_CUBIC)
+    cv2.imshow(&quot;Frame&quot;, frame)
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    Thresh = cv2.adaptiveThreshold(gray, 255,
+             cv2.ADAPTIVE_THRESH_MEAN_C,
+             cv2.THRESH_BINARY_INV, 11, 2)
+    cv2.imshow(&quot;Thresh&quot;, Thresh)
+    if cv2.waitKey(25) &amp; 0xFF == ord(&#x27;q&#x27;):
+        break
+cap.release()
+cv2.destroyAllWindows()</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 8: video processing d. image properties and image-to-video generation (any video) aim: to resize images to a common size and generate a video from them.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 8: Video Processing</div>
+          <h2>D. Image Properties and Image-to-Video Generation (any video)</h2>
+        </div>
+        <span class="number">43</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To resize images to a common size and generate a video from them.</p>
+        <button class="copy-btn" type="button" data-copy="42" aria-label="Copy code for D. Image Properties and Image-to-Video Generation (any video)">Copy Code</button>
+      </div>
+      <pre><code id="code-42">import os, cv2
+from PIL import Image
+os.chdir(r&#x27;D:\2. AAYUSH FILES\PRACTICALS\IP\IP PYTHON&#x27;)
+imgs = [f for f in os.listdir(&#x27;.&#x27;) if f.lower().endswith((&#x27;.jpg&#x27;, &#x27;.jpeg&#x27;, &#x27;.png&#x27;))]
+if not imgs: exit()
+sz = [Image.open(f).size for f in imgs]
+mw, mh = [int(sum(x)/len(imgs)) for x in zip(*sz)]
+for f in imgs:
+    im = Image.open(f).resize((mw, mh))
+    (im.convert(&#x27;RGB&#x27;) if im.mode in (&#x27;RGBA&#x27;, &#x27;P&#x27;) else im).save(f, &#x27;JPEG&#x27;, quality=95)
+    print(f, &quot;is resized&quot;)
+out = cv2.VideoWriter(&#x27;mygeneratedvideo.avi&#x27;, cv2.VideoWriter_fourcc(*&#x27;XVID&#x27;), 1, (mw, mh))
+for f in imgs: out.write(cv2.imread(f))
+out.release()
+print(&quot;Video generation complete!&quot;)
+cap = cv2.VideoCapture(&#x27;mygeneratedvideo.avi&#x27;)
+while True:
+    ret, frame = cap.read()
+    if not ret:
+        cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
+        continue
+    cv2.imshow(&#x27;Generated Video&#x27;, frame)
+    if cv2.waitKey(500) &amp; 0xFF == ord(&#x27;q&#x27;): break
+cap.release(); cv2.destroyAllWindows()</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 9: color image processing a. read a color image and segment it into rgb planes (rgb image) aim: to read a color image and separate it into red, green, and blue (rgb) planes.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 9: Color Image Processing</div>
+          <h2>A. Read a Color Image and Segment It into RGB Planes (RGB image)</h2>
+        </div>
+        <span class="number">44</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To read a color image and separate it into Red, Green, and Blue (RGB) planes.</p>
+        <button class="copy-btn" type="button" data-copy="43" aria-label="Copy code for A. Read a Color Image and Segment It into RGB Planes (RGB image)">Copy Code</button>
+      </div>
+      <pre><code id="code-43">clc;
+clear all;
+I = imread(&#x27;E:\IP Prac\original.jpg&#x27;);
+r = size(I,1);
+c = size(I,2);
+R = zeros(r,c,3);
+G = zeros(r,c,3);
+B = zeros(r,c,3);
+R(:,:,1) = I(:,:,1);
+G(:,:,2) = I(:,:,2);
+B(:,:,3) = I(:,:,3);
+subplot(2,2,1);
+imshow(I);
+title(&#x27;Original Image&#x27;);
+subplot(2,2,2);
+imshow(uint8(R));
+title(&#x27;Red Component&#x27;);
+subplot(2,2,3);
+imshow(uint8(G));
+title(&#x27;Green Component&#x27;);
+subplot(2,2,4);
+imshow(uint8(B));
+title(&#x27;Blue Component&#x27;);</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 9: color image processing b. convert an image from one color model to another ">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 9: Color Image Processing</div>
+          <h2>B. Convert an Image from One Color Model to Another</h2>
+        </div>
+        <span class="number">45</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: Not specified in the source document.</p>
+        <button class="copy-btn" type="button" data-copy="44" aria-label="Copy code for B. Convert an Image from One Color Model to Another">Copy Code</button>
+      </div>
+      <pre><code id="code-44"></code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 9: color image processing i. rgb to hsv (rgb image) aim: to convert an rgb image into the hsv color model.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 9: Color Image Processing</div>
+          <h2>i. RGB to HSV (RGB image)</h2>
+        </div>
+        <span class="number">46</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To convert an RGB image into the HSV color model.</p>
+        <button class="copy-btn" type="button" data-copy="45" aria-label="Copy code for i. RGB to HSV (RGB image)">Copy Code</button>
+      </div>
+      <pre><code id="code-45">clc;
+clear;
+rgb = imread(&#x27;D:\2. AAYUSH FILES\PRACTICALS\IP\Practicals\I3.jpg&#x27;);
+hsv = rgb2hsv(rgb);
+subplot(2,3,1);
+imshow(rgb);
+xtitle(&#x27;Original RGB Image&#x27;);
+subplot(2,3,2);
+imshow(hsv);
+xtitle(&#x27;HSV Image&#x27;);
+subplot(2,3,3);
+imshow(hsv(:,:,3));
+xtitle(&#x27;Intensity Component&#x27;);
+subplot(2,3,4);
+imshow(hsv(:,:,1));
+xtitle(&#x27;Hue Component&#x27;);
+subplot(2,3,5);
+imshow(hsv(:,:,2));
+xtitle(&#x27;Saturation Component&#x27;);</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 9: color image processing ii. rgb to ycbcr (rgb image) aim: to convert an rgb image into the ycbcr color model.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 9: Color Image Processing</div>
+          <h2>ii. RGB to YCbCr (RGB image)</h2>
+        </div>
+        <span class="number">47</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To convert an RGB image into the YCbCr color model.</p>
+        <button class="copy-btn" type="button" data-copy="46" aria-label="Copy code for ii. RGB to YCbCr (RGB image)">Copy Code</button>
+      </div>
+      <pre><code id="code-46">clc;
+clear all;
+I = imread(&#x27;D:\2. AAYUSH FILES\PRACTICALS\IP\Practicals\I3.jpg&#x27;);
+ycbcr = rgb2ycbcr(rgb);
+subplot(2,3,1);
+imshow(rgb);
+title(&#x27;Original RGB Image&#x27;);
+subplot(2,3,2);
+imshow(ycbcr);
+title(&#x27;YCBCR Image&#x27;);
+subplot(2,3,3);
+imshow(ycbcr(:,:,1));
+title(&#x27;Luminance&#x27;);
+subplot(2,3,4);
+imshow(ycbcr(:,:,2));
+title(&#x27;Chrominance Cb&#x27;);
+subplot(2,3,5);
+imshow(ycbcr(:,:,3));
+title(&#x27;Chrominance Cr&#x27;);</code></pre>
+    </article>
+
+    <article class="code-card" data-search="practical 9: color image processing c. false colouring (pseudo colouring) on a grayscale image (rgb image) aim: to apply pseudo colouring to a grayscale image.">
+      <div class="card-top">
+        <div class="titles">
+          <div class="practical-label">Practical 9: Color Image Processing</div>
+          <h2>C. False Colouring (Pseudo Colouring) on a Grayscale Image (RGB Image)</h2>
+        </div>
+        <span class="number">48</span>
+      </div>
+      <div class="aim-row">
+        <p class="aim">Aim: To apply pseudo colouring to a grayscale image.</p>
+        <button class="copy-btn" type="button" data-copy="47" aria-label="Copy code for C. False Colouring (Pseudo Colouring) on a Grayscale Image (RGB Image)">Copy Code</button>
+      </div>
+      <pre><code id="code-47">clc;
+clear;
+RGB = imread(&#x27;D:\2. AAYUSH FILES\PRACTICALS\IP\Practicals\I3.jpg&#x27;);
+Image = rgb2gray(RGB);
+subplot(1,3,1);
+imshow(RGB);
+xtitle(&#x27;Original RGB Image&#x27;);
+subplot(1,3,2);
+imshow(Image);
+xtitle(&#x27;Gray Image&#x27;);
+n = 256;
+x = linspace(0,1,n)&#x27;;
+cmap = [max(0,min(1,1.5-abs(4*x-3))), ...
+        max(0,min(1,1.5-abs(4*x-2))), ...
+        max(0,min(1,1.5-abs(4*x-1)))];
+subplot(1,3,3);
+imshow(Image, cmap);
+xtitle(&#x27;Pseudo Color Image&#x27;);</code></pre>
+    </article>
+<div class="empty" id="empty">No matching practical found.</div>
+</main>
+<footer>Code collection · Black &amp; white layout</footer>
+<script>
+document.querySelectorAll('.copy-btn').forEach(button => {
+  button.addEventListener('click', async () => {
+    const code = document.getElementById(`code-${button.dataset.copy}`).innerText;
+    const original = button.textContent;
+    try {
+      await navigator.clipboard.writeText(code);
+      button.textContent = 'Copied';
+    } catch (err) {
+      const area = document.createElement('textarea');
+      area.value = code;
+      document.body.appendChild(area);
+      area.select();
+      document.execCommand('copy');
+      area.remove();
+      button.textContent = 'Copied';
+    }
+    setTimeout(() => button.textContent = original, 1400);
+  });
+});
+</script>
+</body>
+</html>
